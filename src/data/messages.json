@@ -1,0 +1,45 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "İlk Tanıştığımız Günkü Gülüşün",
+      "content": "O ilk gün seni gördüğümde, gülüşün kalbimi çaldı. O an hayatımın nasıl değişeceğini bilmiyordum, ama şimdi biliyorum ki en güzel değişiklikti.",
+      "emoji": "😊"
+    },
+    {
+      "id": 2,
+      "title": "Seninle Geçirdiğim En Güzel An",
+      "content": "Her anımız güzel ama o gece yıldızlara bakarken elini tuttuğum an... O an zamanın durduğunu hissettim. Seninle her an böyle hissediyorum.",
+      "emoji": "⭐"
+    },
+    {
+      "id": 3,
+      "title": "Bunu Hiç Söylemedim Ama...",
+      "content": "Bazen sabah uyandığımda seni yanımda görmek hayalim oluyor. Seninle geçirdiğim her gün beni daha mutlu ediyor.",
+      "emoji": "🌅"
+    },
+    {
+      "id": 4,
+      "title": "Seni Düşündüğüm Anlar",
+      "content": "Kahvemi içerken, müzik dinlerken, yürürken... Her an aklımdasın. Sen benim en güzel düşüncemin sebebisin.",
+      "emoji": "☕"
+    },
+    {
+      "id": 5,
+      "title": "Gelecek Hayallerimiz",
+      "content": "Seninle kurduğum her hayal, planladığım her an gerçek olmaya değer. Birlikte yazacağımız hikaye çok güzel olacak.",
+      "emoji": "🏡"
+    },
+    {
+      "id": 6,
+      "title": "Sana Teşekkürüm",
+      "content": "Hayatıma getirdiğin renk, anlam ve mutluluk için teşekkür ederim. Sen olmadan bu dünya çok daha sıkıcı olurdu.",
+      "emoji": "🙏"
+    }
+  ],
+  "letter": {
+    "password": "hamburger",
+    "passwordHint": "İlk birlikte yediğimiz yemek neydi?",
+    "content": "İrem’im,\n\nBu satırları yazarken içim kıpır kıpır, çünkü seni düşünmeden tek bir kelime bile yazamıyorum. Bu projeyi senin için hazırlarken öyle bir heyecanlandım ki... Sanki ilk buluşmamız gibi. Hani o gece vardı ya, parkta saatlerce oturmuştuk, hava serindi ama içimiz sıcaktı... İşte o an gibi.\n\nSeninle olmak bana iyi geliyor. Fazla cümle kurmam gerekmiyor yanında, sessizlik bile dolu. Gülüşünü ezberledim. Hangi anda ne yapacağını tahmin edebiliyorum artık. Bunu sadece çok sevdiğin birine yaparsın.\n\nEvinin önünden her geçtiğimde içim garip oluyor. Bazen geçerken yavaşlıyorum, bazen duruyorum. Çünkü orası sadece bir yer değil artık; bir his. İçinde senin yaşadığın bir dünya var. Ve ben o dünyanın dışında değilim artık.\n\nBu küçük hediye, seni düşündüğüm anlardan biri sadece. Ama her an gibi, içimde bir iz bırakıyor. Ben bazen düşüncelerimi anlatmakta çok iyi değilim, ama senin için çabalıyorum. Çünkü sen uğruna çabalanacak tek şeysin.\n\nSeni tanıdığım için şanslıyım. Seninle olduğum için huzurluyum. Ve seni sevdiğim için kendimi tamamlanmış hissediyorum.\n\nİyi ki varsın İrem. Her şeyinle.\n\n— Hep senin olan Murat."
+  }
+}
