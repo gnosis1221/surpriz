@@ -17,7 +17,7 @@ function App() {
   const handlePlayMusic = () => {
     const audio = audioRef.current;
     if (audio) {
-      audio.volume = 0.5;
+      audio.volume = 0.8;
       // play() bir Promise döndürür. Başarılı olduğunda state'i güncelle.
       audio.play()
         .then(() => {
