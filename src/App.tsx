@@ -1,6 +1,6 @@
 // src/App.tsx
 
-import React, { useState, useRef } from 'react'; // useRef'i import ettik
+import React, { useState, useRef } from 'react';
 import CandleScreen from './components/CandleScreen';
 import NotesGallery from './components/NotesGallery';
 import Letter from './components/Letter';
@@ -9,21 +9,25 @@ import Counter from './components/Counter';
 function App() {
   const [currentScreen, setCurrentScreen] = useState<'candles' | 'notes' | 'letter'>('candles');
   const [showFireworks, setShowFireworks] = useState(false);
-
-  // --- MÜZİK MANTIĞI BURAYA TAŞINDI ---
   const audioRef = useRef<HTMLAudioElement>(null);
+  
+  // YENİ EKLEME: Müziğin durumunu takip etmek için state
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   const handlePlayMusic = () => {
     const audio = audioRef.current;
     if (audio) {
-      // Ses seviyesini isterseniz ayarlayabilirsiniz (0.0 ile 1.0 arası)
       audio.volume = 0.5;
-      audio.play().catch(error => {
-        console.error("Müzik çalınırken hata oluştu:", error);
-      });
+      // play() bir Promise döndürür. Başarılı olduğunda state'i güncelle.
+      audio.play()
+        .then(() => {
+          setIsMusicPlaying(true);
+        })
+        .catch(error => {
+          console.error("Müzik çalınırken hata oluştu:", error);
+        });
     }
   };
-  // ------------------------------------
 
   const handleCandlesComplete = () => {
     setShowFireworks(true);
@@ -35,7 +39,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-black overflow-hidden relative">
-      {/* --- MÜZİK ELEMENTİ ARTIK BURADA, HEP AKTİF --- */}
       <audio ref={audioRef} src="/arkaplan-muzigi.mp3" loop hidden />
       
       <Counter />
@@ -44,8 +47,9 @@ function App() {
         <CandleScreen 
           onComplete={handleCandlesComplete} 
           showFireworks={showFireworks}
-          // Müziği başlatma fonksiyonunu prop olarak yolluyoruz
           onPlayMusic={handlePlayMusic}
+          // YENİ EKLEME: Müzik durumunu prop olarak yolluyoruz
+          isMusicPlaying={isMusicPlaying}
         />
       )}
       

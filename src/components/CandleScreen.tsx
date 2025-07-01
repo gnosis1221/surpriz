@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Fireworks from './Fireworks';
 import Confetti from './Confetti';
-import { Mic, MicOff } from 'lucide-react';
+import { Mic, MicOff, PlayCircle } from 'lucide-react';
 
 interface CandleScreenProps {
   onComplete: () => void;
   showFireworks: boolean;
   onPlayMusic: () => void; // --> MÜZİK TETİKLEME PROPU EKLENDİ
+  isMusicPlaying: boolean;
 }
 
 interface Candle {
@@ -21,7 +22,7 @@ const BLOW_SENSITIVITY = 30; // Üflemeyi algılama hassasiyeti. Gerekirse artı
 const REQUIRED_BLOW_DURATION = 2000; // Mumun sönmesi için gereken üfleme süresi (ms).
 const BLOW_RESET_TIME = 500; // Ses kesildikten ne kadar süre sonra üfleme sayacının sıfırlanacağı (ms).
 
-const CandleScreen: React.FC<CandleScreenProps> = ({ onComplete, showFireworks, onPlayMusic }) => {
+const CandleScreen: React.FC<CandleScreenProps> = ({ onComplete, showFireworks, onPlayMusic, isMusicPlaying }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
@@ -147,7 +148,6 @@ const CandleScreen: React.FC<CandleScreenProps> = ({ onComplete, showFireworks, 
       const microphone = audioContextRef.current.createMediaStreamSource(stream);
       microphone.connect(analyserRef.current);
 
-      onPlayMusic(); 
 
       setMicPermission('granted');
       setIsListening(true);
@@ -296,6 +296,23 @@ const CandleScreen: React.FC<CandleScreenProps> = ({ onComplete, showFireworks, 
               className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-poppins font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               Mikrofonu Aç 🎙️
+            </button>
+          </div>
+        </div>
+      )}
+
+       {/* YENİ UI: MÜZİĞİ BAŞLATMA BUTONU */}
+      {micPermission === 'granted' && !isMusicPlaying && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/70 z-30">
+          <div className="text-center">
+            <h2 className="text-3xl font-dancing text-pink-300 mb-6">
+              Hazır olduğunda müziği başlat...
+            </h2>
+            <button
+              onClick={onPlayMusic}
+              className="group transition-transform duration-300 transform hover:scale-110"
+            >
+              <PlayCircle className="text-white/80 group-hover:text-white" size={80} />
             </button>
           </div>
         </div>
