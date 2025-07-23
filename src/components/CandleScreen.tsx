@@ -18,7 +18,7 @@ interface Candle {
 }
 
 // --> Değişiklik: Ayarları kolayca değiştirmek için sabitler tanımlandı
-const BLOW_SENSITIVITY = 30; // Üflemeyi algılama hassasiyeti. Gerekirse artırıp azaltın.
+const BLOW_SENSITIVITY = 15; // Üflemeyi algılama hassasiyeti. Gerekirse artırıp azaltın.
 const REQUIRED_BLOW_DURATION = 2000; // Mumun sönmesi için gereken üfleme süresi (ms).
 const BLOW_RESET_TIME = 500; // Ses kesildikten ne kadar süre sonra üfleme sayacının sıfırlanacağı (ms).
 
@@ -48,28 +48,16 @@ const CandleScreen: React.FC<CandleScreenProps> = ({ onComplete, showFireworks, 
   }, []);
 
   const blowOutCandle = useCallback(() => {
-    setCandles(prevCandles => {
-      const litCandles = prevCandles.filter(candle => candle.lit);
-      if (litCandles.length === 0) return prevCandles;
+    // Tüm mumların 'lit' durumunu false yap.
+    setCandles(prevCandles => prevCandles.map(candle => ({ ...candle, lit: false })));
 
-      const randomIndex = Math.floor(Math.random() * litCandles.length);
-      const candleToBlowOut = litCandles[randomIndex];
-
-      const newCandles = prevCandles.map(candle =>
-        candle === candleToBlowOut ? { ...candle, lit: false } : candle
-      );
-
-      const remainingLit = newCandles.filter(c => c.lit).length;
-      if (remainingLit === 0) {
-        setShowMessage(true);
-        setTimeout(() => {
-          onComplete();
-          stopListening();
-        }, 2000);
-      }
-      return newCandles;
-    });
-  }, [onComplete, stopListening]);
+    // Animasyon ve tamamlama mantığını tetikle.
+    setShowMessage(true);
+    setTimeout(() => {
+        onComplete();
+        stopListening();
+    }, 2000); // Mesajın görünmesi için küçük bir gecikme bırakalım.
+}, [onComplete, stopListening]);
 
   const startListening = useCallback(() => {
     if (!analyserRef.current || !audioContextRef.current) return;
@@ -143,7 +131,7 @@ const CandleScreen: React.FC<CandleScreenProps> = ({ onComplete, showFireworks, 
 
       analyserRef.current = audioContextRef.current.createAnalyser();
       analyserRef.current.fftSize = 512;
-      analyserRef.current.smoothingTimeConstant = 0.5;
+      analyserRef.current.smoothingTimeConstant = 0.3;
 
       const microphone = audioContextRef.current.createMediaStreamSource(stream);
       microphone.connect(analyserRef.current);
